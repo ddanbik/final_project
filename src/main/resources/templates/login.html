@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css\login.css" type="text/css" />
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div id="formContent">
+        <div class="loginTitle" >Login</div>
+        <form action="/appLogin" method="post">
+            <input type="text" id="username" class="second" name="username" placeholder="email">
+            <input type="text" id="pass" class="third" name="pass" placeholder="password">
+            <input type="submit" class="" value="Log In">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!--
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+
+
+        <div class="fadeIn first">
+            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+        </div>
+
+
+        <form>
+            <input type="text" id="username" class="fadeIn second" name="username" placeholder="login">
+            <input type="text" id="pass" class="fadeIn third" name="pass" placeholder="password">
+            <input type="submit" class="fadeIn fourth" value="Zaloguj">
+        </form>
+
+
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+
+    </div>
+</div>
+
+-->
+
+<!--
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+</head>
+<body>
+
+<form action="/appLogin" method="post">
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">
+            Invalid username or password.
+        </div>
+    </div>
+    <div>Username: <input type="text" name="username"/></div>
+    <div>Password: <input type="text" name="pass"/></div>
+    <div><input type="submit" name="zaloguj" value="zaloguj"/></div>
+
+</form>
+
+</body>
+</html>
+
+-->
