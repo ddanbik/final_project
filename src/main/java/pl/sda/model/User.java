@@ -2,6 +2,8 @@ package pl.sda.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
+//import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -18,6 +20,28 @@ public class User {
 
     @Column(name = "password_hash")
     private String password;
+
+    @Column
+    private String city;
+
+    @Column
+    private String address;
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date createDate;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
+
+    @Column
+    @Lob
+    private byte[] avatar;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private AccountType type;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
@@ -57,5 +81,53 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
+    public AccountStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AccountStatus status) {
+        this.status = status;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
     }
 }
