@@ -14,49 +14,34 @@ import pl.sda.dto.UserDto;
 import javax.validation.Valid;
 
 @Controller
-public class RegisterController {
+public class UserPanelController {
 
 
-//    private static final String USER_EXISTS_MSG = "Użytkownik o takim loginie już jest w systemie";
-//    private static final String BAD_USER = "Zły format adresu email!!!";
-//    private static final String BAD_PASSWORD = "Złe hasło!!!";
     private static final String USER_REGISTRED_CORRECTLY = "Użytkownik zarejestrowany poprawnie";
-
-
     @Autowired
     private UserBoImpl userBo;
-
 
     @Autowired
     private UserValidator validator;
 
-    @GetMapping("/register")
-    public String register(Model model){
+
+    @GetMapping("/userPanel")
+    public String page(Model model) {
         initModel(model);
-        return "register";
+        return "userPanel";
     }
 
-    @PostMapping("/register")
-    public String saveUser(@Valid @ModelAttribute(name= "user") UserDto user, BindingResult bindingResult, Model model){
-//        initModel(model);
-
-        if(bindingResult.hasErrors() || validate(user, model)){
-//            model.addAttribute("badUser", BAD_USER);
-//            model.addAttribute("badPassword", BAD_PASSWORD);
-            return "register";
+    @PostMapping("/saveUserPanel")
+    public String saveUser(@Valid @ModelAttribute(name = "user") UserDto user, BindingResult bindingResult,
+                           Model model) {
+        if (bindingResult.hasErrors() || validate(user, model)) {
+            return "userPanel";
         }
+
         userBo.saveUser(user);
         model.addAttribute("userRegisteredCorrectly", USER_REGISTRED_CORRECTLY);
-        return "login";
+        return "userPanel";
     }
-
-//    private boolean checkUserAlreadyExists(@ModelAttribute @Valid UserDto user, Model model) {
-//        boolean result = validator.notValid(user);
-//        if (result) {
-//            model.addAttribute("userAlreadyExists", USER_EXISTS_MSG);
-//        }
-//        return result;
-//    }
 
     private boolean validate(UserDto user, Model model) {
         String result = validator.notValid(user);

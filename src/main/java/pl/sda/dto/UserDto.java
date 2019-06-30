@@ -1,12 +1,13 @@
 package pl.sda.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 public class UserDto implements Serializable {
 
-
-    @Pattern(regexp = "^[\\w\\.]+@[\\w]+\\.[\\w]+(\\.[a-z]{2,3})?$", message = "Zły format adresu email")
+    @Email(message = "Zły format adresu email")
+//    @Pattern(regexp = "^[\\w\\.]+@[\\w]+\\.[\\w]+(\\.[a-z]{2,3})?$", message = "Zły format adresu email")
     private String username;
 
     @Pattern(regexp = "^.{5,}$", message = "Hasło jest za krótkie")

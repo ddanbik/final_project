@@ -4,7 +4,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login page</title>
+    <title>Portal aukcyjny</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -23,12 +23,15 @@
         <div class="registrationTitle" >Rejestracja</div>
 
         <form th:action="@{/register}" th:object="${user}" method="post">
-            <p class="error" th:text="${userAlreadyExists}"></p>
-            <input id="username" type="text" th:field="*{username}" class="second" placeholder="email"/>
+            <!--<p class="error" th:text="${userAlreadyExists}"></p>-->
+            <p class="error" th:text="${commonError}"></p>
+            <input id="username" type="text" th:field="*{username}" class="first" placeholder="email"/>
+            <!--<div class="error" th:text="${badUser}"></div>-->
             <div class="error" th:errors="*{username}"></div>
-            <input id="password" type="text" th:field="*{password}" class="third" placeholder="password"/>
+            <input id="password" type="text" th:field="*{password}" class="second" placeholder="password"/>
+            <!--<div class="error" th:text="${badPassword}"></div>-->
             <div class="error" th:errors="*{password}"></div>
-            <input id="confirmedPassword" type="text" th:field="*{confirmedPassword}" class="fourth" placeholder="confirm password"/>
+            <input id="confirmedPassword" type="text" th:field="*{confirmedPassword}" class="third" placeholder="confirm password"/>
             <div class="fourth">
                 <input type="button" value="Powrót" name="backButton"
                    onClick="javascript:window.location.href='/login'" class="shortButton" >

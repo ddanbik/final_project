@@ -1,9 +1,10 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <div th:fragment="header-css">
         <link rel="stylesheet" th:href="@{/css/header.css}"
               href="../../css/header.css" />
     </div>
+    <!--<title>Portal aukcyjny</title>-->
 </head>
 <body>
 <div th:fragment="header">
@@ -11,10 +12,14 @@
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">Logowanie</a>
+                <a class="navbar-brand" th:href="@{/}">Strona główna</a>
             </div>
-            <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/register}">Registration</a>
+            <div class="navbar-header" sec:authorize="isAnonymous()">
+                <a class="navbar-brand" th:href="@{/register}">Rejestracja</a>
+            </div>
+            <div class="navbar-header" sec:authorize="isAuthenticated()">
+                <a class="navbar-brand" th:href="@{/userPanel}">Panel użytkownika</a>
+                <a class="navbar-brand" th:href="@{/logout}">Wyloguj</a>
             </div>
         </div>
     </nav>

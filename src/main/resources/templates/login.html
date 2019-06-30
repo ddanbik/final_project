@@ -17,7 +17,8 @@
 
 <div th:replace="header :: header"/>
 <div class="wrapper">
-
+    <p class="info" th:text="${userRegisteredCorrectly}"></p>
+    <p class="alert alert-danger" th:if="${param.error}" th:text="'Podany login lub hasło są nieprawidłowe'"></p>
     <div id="formContent">
         <div class="loginTitle" >Login</div>
         <form action="/appLogin" method="post">
