@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Projekt aukcyjny</title>
@@ -9,6 +10,16 @@
 Strona główna
 
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<!--<h1 th:inline="text">Hello [[${#httpServletRequest.}]]!</h1>-->
+
+<!--
+<span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="username"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a th:href="@{/logout}">Sign Out</a>
+            </span>
+-->
+
 
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="wyloguj"/>
