@@ -2,11 +2,14 @@ package pl.sda.dto;
 
 import pl.sda.model.AccountStatus;
 import pl.sda.model.AccountType;
+import pl.sda.model.User;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.Date;
 
 public class UserDto implements Serializable {
 
@@ -20,16 +23,51 @@ public class UserDto implements Serializable {
 
     private String confirmedPassword;
 
-    @NotEmpty
+    @NotBlank(message = "Pole nie może być puste")
     private String city;
 
-    @NotEmpty
+    @NotBlank(message = "Pole nie może być puste")
     private String address;
 
 
+    private Date createDate;
     private AccountStatus status;
-
+    private byte[] avatar;
     private AccountType type;
+
+
+    public UserDto(){}
+
+//    public UserDto(User user) {
+//        thi
+//    }
+
+
+    public UserDto(User user) {
+        this.username = user.getUsername();
+        this.city = user.getCity();
+        this.address = user.getAddress();
+        this.avatar = user. getAvatar();
+        this.setType(user.getType());
+        this.setStatus(user.getStatus());
+    }
+
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
 
     public AccountType getType() {
         return type;

@@ -19,8 +19,14 @@
             </div>
             <div class="navbar-header" sec:authorize="isAuthenticated()">
                 <a class="navbar-brand" th:href="@{/userPanel}">Panel użytkownika</a>
+                <a class="navbar-brand" th:href="@{/auction}">Wystaw przedmiot</a>
+                <a class="text">[[${#authentication.name}]]!</a>
+                <!--<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+                <!--<a class="text">[[${#httpServletRequest.remoteUser}]]!</a>-->
+                <!--<a href="#"><span  th:text="${#authentication.name}"></span></a>-->
                 <a class="navbar-brand" th:href="@{/logout}">Wyloguj</a>
             </div>
+            <!--<div style="float:both"></div>-->
         </div>
     </nav>
 </div>

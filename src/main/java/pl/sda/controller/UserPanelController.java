@@ -1,6 +1,8 @@
 package pl.sda.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +19,7 @@ import javax.validation.Valid;
 public class UserPanelController {
 
 
-    private static final String USER_REGISTRED_CORRECTLY = "Użytkownik zarejestrowany poprawnie";
+    private static final String USER_MODIFIED_CORRECTLY = "Dane zapisane poprawnie";
     @Autowired
     private UserBoImpl userBo;
 
@@ -26,8 +28,16 @@ public class UserPanelController {
 
 
     @GetMapping("/userPanel")
-    public String page(Model model) {
-        initModel(model);
+    public String page(@Valid @ModelAttribute(name = "user") UserDto user, BindingResult bindingResult, Model model) {
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        model.addAttribute("user", userBo.getUser(username));
+//        initModel(model);
         return "userPanel";
     }
 
@@ -38,13 +48,13 @@ public class UserPanelController {
             return "userPanel";
         }
 
-        userBo.saveUser(user);
-        model.addAttribute("userRegisteredCorrectly", USER_REGISTRED_CORRECTLY);
+        userBo.updateUser(user);
+        model.addAttribute("userModifiedCorrectly", USER_MODIFIED_CORRECTLY);
         return "userPanel";
     }
 
     private boolean validate(UserDto user, Model model) {
-        String result = validator.notValid(user);
+        String result = validator.notValid(user, false);
         if (result != null) {
             model.addAttribute("commonError", result);
         }

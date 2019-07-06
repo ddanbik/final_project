@@ -15,8 +15,8 @@ public class UserValidator {
     @Autowired
     private UserRepository userRepository;
 
-    public String notValid(UserDto dto){
-        if (checkUserAlreadyExists(dto)) {
+    public String notValid(UserDto dto, boolean isNewUser){
+        if (isNewUser && checkUserAlreadyExists(dto)) {
             return USER_EXISTS_MSG;
         }
         if (checkPasswordsNotEquals(dto)) {

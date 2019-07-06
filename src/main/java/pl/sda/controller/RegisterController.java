@@ -59,7 +59,7 @@ public class RegisterController {
 //    }
 
     private boolean validate(UserDto user, Model model) {
-        String result = validator.notValid(user);
+        String result = validator.notValid(user, true);
         if (result != null) {
             model.addAttribute("commonError", result);
         }

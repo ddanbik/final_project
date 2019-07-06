@@ -13,6 +13,7 @@ import pl.sda.repository.RoleRepository;
 import pl.sda.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,6 +32,7 @@ public class UserBoImpl {
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setPassword(encoder.encode(dto.getPassword()));
+        user.setCreateDate(new Date());
         user.setStatus(AccountStatus.ACTIVE);
         user.setType(AccountType.NORMAL);
         user.setCity(dto.getCity());
@@ -41,5 +43,18 @@ public class UserBoImpl {
         user.setRoles(roles);
 
         userRepository.save(user);
+    }
+
+    public void updateUser(UserDto dto) {
+        User user = userRepository.findByUsername(dto.getUsername()).get();
+        user.setPassword(encoder.encode(dto.getPassword()));
+        user.setCity(dto.getCity());
+        user.setAddress(dto.getAddress());
+        userRepository.save(user);
+    }
+
+    public UserDto getUser(String username) {
+        User user = userRepository.findByUsername(username).get();
+        return new UserDto(user);
     }
 }
